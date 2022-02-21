@@ -1,0 +1,6 @@
+    <li>
+        <a href="{{ route('admin.sliders.index') }}" class="waves-effect">
+            <i class="fas fa-images"></i>
+            <span>Sliders</span>
+        </a>
+    </li>

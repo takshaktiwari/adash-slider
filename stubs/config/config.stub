@@ -1,0 +1,29 @@
+    /*
+    | Aslider
+    |---------------------
+    | For configuration of package: `takshak/adash-slider`.
+    */
+    'aslider'	=>	[
+        'install'	=>	[
+            // Enable / Disable `adash:blog:install` command
+            'command'	=>	env('APP_DEBUG', true),
+        ],
+		'sizes'	=>	[
+			'small'	=>	[
+				'width'		=>	500,
+				'height'	=>	500,
+			],
+			'medium'	=>	[
+				'width'		=>	1000,
+				'height'	=>	600,
+			],
+			'large'	=>	[
+				'width'		=>	1500,
+				'height'	=>	550,
+			],
+			'x_large'	=>	[
+				'width'		=>	1920,
+				'height'	=>	550,
+			],
+		],
+	],

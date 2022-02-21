@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Models;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Slider extends Model
+{
+    use HasFactory;
+    protected $guarded = [];
+
+    public function image_lg()
+    {
+        return ($this->image_lg && \Storage::disk('public')->exists($this->image_lg))
+                ? url('storage/app/public/'.$this->image_lg)
+                : 'https://via.placeholder.com/1000x800?text=No+Image';
+    }
+    public function image_md()
+    {
+        return ($this->image_md && \Storage::disk('public')->exists($this->image_md))
+                ? url('storage/app/public/'.$this->image_md)
+                : 'https://via.placeholder.com/500x400?text=No+Image';
+    }
+    public function image_sm()
+    {
+        return ($this->image_sm && \Storage::disk('public')->exists($this->image_sm))
+                ? url('storage/app/public/'.$this->image_sm)
+                : 'https://via.placeholder.com/250x200?text=No+Image';
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "name": "takshak/adash-slider",
+    "keywords": ["laravel", "breeze", "admin panel", "panel", "dashboard"],
+    "description": "Simple admin panel starter kit",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "authors": [
+        {
+            "name": "Takshak Tiwari",
+            "email": "takshaktiwari@gmail.com"
+        }
+    ],
+    "require": {
+        "takshak/adash": "*"
+    },
+    "autoload": {
+        "psr-4" : {
+            "Takshak\\Aslider\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Takshak\\Aslider\\AsliderServiceProvider"
+            ]
+        }
+    }
+}

@@ -12,7 +12,8 @@
         }
     ],
     "require": {
-        "takshak/adash": "*"
+        "takshak/adash": "*",
+        "jenssegers/agent": "^2.6"
     },
     "autoload": {
         "psr-4" : {

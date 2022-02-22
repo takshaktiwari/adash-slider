@@ -20,10 +20,6 @@
 			'large'	=>	[
 				'width'		=>	1500,
 				'height'	=>	550,
-			],
-			'x_large'	=>	[
-				'width'		=>	1920,
-				'height'	=>	550,
-			],
+			]
 		],
 	],

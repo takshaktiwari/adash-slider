@@ -100,5 +100,10 @@ class InstallCommand extends Command
             $lines .= Str::of($targetFile)->afterLast('</ul>');
             $this->filesystem->put($targetFilePath, $lines);
         }
+
+        $this->call('migrate');
+        $this->call('db:seed', [
+            '--class' => 'SliderSeeder'
+        ]);
     }
 }

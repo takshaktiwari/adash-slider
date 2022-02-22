@@ -56,13 +56,6 @@ class SliderFactory extends Factory
         });
     }
 
-    public function x_large(): SliderFactory
-    {
-        return $this->state(function (array $attributes) {
-            return $this->getImages(config('site.aslider.sizes.x_large'));
-        });
-    }
-
     public function getImages($dimensions): array
     {
         $image_lg = 'sliders/'.Str::of(microtime())->slug().'.jpg';

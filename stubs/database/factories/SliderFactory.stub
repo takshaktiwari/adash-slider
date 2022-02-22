@@ -28,6 +28,13 @@ class SliderFactory extends Factory
         ];
     }
 
+    public function size($size)
+    {
+        return $this->state(function (array $attributes) use ($size) {
+            return $this->getImages(config('site.aslider.sizes.'.$size));
+        });
+    }
+
     public function small()
     {
         return $this->state(function (array $attributes) {
@@ -38,21 +45,21 @@ class SliderFactory extends Factory
     public function medium(): SliderFactory
     {
         return $this->state(function (array $attributes) {
-            return $this->getImages(config('site.aslider.sizes.small'));
+            return $this->getImages(config('site.aslider.sizes.medium'));
         });
     }
 
     public function large(): SliderFactory
     {
         return $this->state(function (array $attributes) {
-            return $this->getImages(config('site.aslider.sizes.small'));
+            return $this->getImages(config('site.aslider.sizes.large'));
         });
     }
 
     public function x_large(): SliderFactory
     {
         return $this->state(function (array $attributes) {
-            return $this->getImages(config('site.aslider.sizes.small'));
+            return $this->getImages(config('site.aslider.sizes.x_large'));
         });
     }
 
@@ -66,7 +73,8 @@ class SliderFactory extends Factory
             ->basePath(\Storage::disk('public')->path('/'))
             ->save($image_lg)
             ->copy($image_md, $dimensions['width']/2)
-            ->copy($image_sm, $dimensions['width']/4);
+            ->copy($image_sm, $dimensions['width']/4)
+            ->destroy();
 
         return [
             'image_lg' => $image_lg,

@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Models\Slider;
 use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
@@ -16,7 +18,7 @@ class SliderSeeder extends Seeder
         \Storage::disk('public')->deleteDirectory('sliders');
         Slider::truncate();
         foreach (config('site.aslider.sizes') as $size => $dimensions) {
-            Slider::factory()->count(4)->$size()->create([
+            Slider::factory()->size($size)->count(4)->create([
                 'display_size'  =>  $size
             ]);
         }

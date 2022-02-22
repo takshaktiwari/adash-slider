@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Models;
+
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -26,5 +28,10 @@ class Slider extends Model
         return ($this->image_sm && \Storage::disk('public')->exists($this->image_sm))
                 ? url('storage/app/public/'.$this->image_sm)
                 : 'https://via.placeholder.com/250x200?text=No+Image';
+    }
+
+    public function scopeActive(Builder $query)
+    {
+        return $query->where('status', true);
     }
 }

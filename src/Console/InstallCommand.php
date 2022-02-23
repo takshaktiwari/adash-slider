@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 
 class InstallCommand extends Command
 {
-    protected $signature = 'adash:slider:install {install=default}';
+    protected $signature = 'adash-slider:install {install=default}';
     protected string $stubsPath;
     protected Filesystem $filesystem;
     protected Str $str;

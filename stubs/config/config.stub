@@ -3,9 +3,9 @@
     |---------------------
     | For configuration of package: `takshak/adash-slider`.
     */
-    'aslider'	=>	[
+    'slider'	=>	[
         'install'	=>	[
-            // Enable / Disable `adash:blog:install` command
+            // Enable / Disable `adash-blog:install` command
             'command'	=>	env('APP_DEBUG', true),
         ],
 		'sizes'	=>	[

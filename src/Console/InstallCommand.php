@@ -35,7 +35,7 @@ class InstallCommand extends Command
             $this->filesystem->put(config_path('site.php'), $lines);
         }
 
-        if (!config('site.aslider.install.command', true)) {
+        if (!config('site.slider.install.command', true)) {
             $this->error('SORRY !! Blog:Install command has been disabled.');
             exit;
         }

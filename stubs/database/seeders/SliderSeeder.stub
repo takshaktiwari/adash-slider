@@ -17,7 +17,7 @@ class SliderSeeder extends Seeder
     {
         \Storage::disk('public')->deleteDirectory('sliders');
         Slider::truncate();
-        foreach (config('site.aslider.sizes') as $size => $dimensions) {
+        foreach (config('site.slider.sizes') as $size => $dimensions) {
             Slider::factory()->size($size)->count(4)->create([
                 'display_size'  =>  $size
             ]);

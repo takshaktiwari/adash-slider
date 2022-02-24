@@ -30,7 +30,7 @@
                                 <div><b>*</b> Image format should be 'jpg' or 'png'</div>
                                 <div>
                                     <b>*</b> Image should be:
-                                    @foreach(config('site.aslider.sizes') as $key => $dimentions)
+                                    @foreach(config('site.slider.sizes') as $key => $dimentions)
                                         <span class="ml-2">
                                             <b>{{ $key }}: </b>
                                             {{ $dimentions['width'].' x '.$dimentions['height'] }}
@@ -62,7 +62,7 @@
                                 <label for="">Display Size <span class="text-danger">*</span></label>
                                 <select name="display_size" required class="form-control">
                                     <option value="">-- Select --</option>
-                                    @foreach(config('site.aslider.sizes') as $key => $dimentions)
+                                    @foreach(config('site.slider.sizes') as $key => $dimentions)
                                         <option value="{{ $key }}" {{ ($key == $slider->display_size) ? 'selected' : '' }} >
                                             {{ ucfirst($key).' ('. $dimentions['width'].' x '.$dimentions['height'].')' }}
                                         </option>

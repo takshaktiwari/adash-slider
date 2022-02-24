@@ -21,9 +21,9 @@ class SliderAction
             $slider->image_md = 'sliders/md/' . $fileName;
             $slider->image_sm = 'sliders/sm/' . $fileName;
 
-            $imgWidth = config('site.aslider.width');
+            $imgWidth = config('site.slider.width');
             if ($request->post('display_size')) {
-                $imgWidth = config('site.aslider.sizes.' . $request->post('display_size') . '.width');
+                $imgWidth = config('site.slider.sizes.' . $request->post('display_size') . '.width');
             }
 
             Imager::init($request->file('slide'))

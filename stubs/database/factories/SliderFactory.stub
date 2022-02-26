@@ -38,21 +38,41 @@ class SliderFactory extends Factory
     public function small()
     {
         return $this->state(function (array $attributes) {
-            return $this->getImages(config('site.slider.sizes.small'));
+            return $this->getImages(config(
+                'site.slider.sizes.small',
+                [
+                    'width'     =>  500,
+                    'height'    =>  500,
+                ],
+
+            ));
         });
     }
 
     public function medium(): SliderFactory
     {
         return $this->state(function (array $attributes) {
-            return $this->getImages(config('site.slider.sizes.medium'));
+            return $this->getImages(config(
+                'site.slider.sizes.medium',
+                [
+                    'width'     =>  1000,
+                    'height'    =>  600,
+                ],
+            ));
         });
     }
 
     public function large(): SliderFactory
     {
         return $this->state(function (array $attributes) {
-            return $this->getImages(config('site.slider.sizes.large'));
+            return $this->getImages(config(
+                'site.slider.sizes.large',
+                [
+                    'width'     =>  1500,
+                    'height'    =>  550,
+
+                ]
+            ));
         });
     }
 

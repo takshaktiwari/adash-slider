@@ -27,7 +27,7 @@ class InstallCommand extends Command
     {
         $stub = $this->filesystem->get($this->stubsPath.'/config/config.stub');
         $targetFile = $this->filesystem->get(config_path('site.php'));
-        if (!$this->str->of($targetFile)->contains("'aslider'")) {
+        if (!$this->str->of($targetFile)->contains("'slider'")) {
             $lines = Str::of($targetFile)->beforeLast('];');
             $lines .= "\n";
             $lines .= $stub;
@@ -101,6 +101,7 @@ class InstallCommand extends Command
             $this->filesystem->put($targetFilePath, $lines);
         }
 
+        sleep(5);
         $this->call('migrate');
         $this->call('db:seed', [
             '--class' => 'SliderSeeder'

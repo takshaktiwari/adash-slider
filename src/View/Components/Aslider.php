@@ -54,7 +54,7 @@ class Aslider extends Component
     public function setSlides($size, $random, $limit)
     {
         $query = Slider::active();
-        if ($size) {
+        if($size) {
             $query->where('display_size', $size);
         } else {
             $agent = new Agent();

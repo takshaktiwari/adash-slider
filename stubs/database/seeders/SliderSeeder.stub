@@ -15,10 +15,25 @@ class SliderSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
+
+        $sizes = [
+                'small' =>  [
+                    'width'     =>  500,
+                    'height'    =>  500,
+                ],
+                'medium'    =>  [
+                    'width'     =>  1000,
+                    'height'    =>  600,
+                ],
+                'large' =>  [
+                    'width'     =>  1500,
+                    'height'    =>  550,
+                ]
+            ];
         \Storage::disk('public')->deleteDirectory('sliders');
         Slider::truncate();
-        foreach (config('site.slider.sizes') as $size => $dimensions) {
-            Slider::factory()->size($size)->count(4)->create([
+        foreach (config('site.slider.sizes', $sizes ) as $size => $dimensions) {
+            Slider::factory()->$size()->count(4)->create([
                 'display_size'  =>  $size
             ]);
         }

@@ -12,7 +12,7 @@
         }
     ],
     "require": {
-        "takshak/adash": "*",
+        "takshak/adash": "^2.0",
         "jenssegers/agent": "^2.6"
     },
     "autoload": {

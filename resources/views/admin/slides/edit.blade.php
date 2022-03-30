@@ -1,27 +1,26 @@
 <x-admin.layout>
 	<x-admin.breadcrumb
-			title='Edit Slider'
+			title='Edit Slide'
 			:links="[
 				['text' => 'Dashboard', 'url' => route('admin.dashboard') ],
-                ['text' => 'Sliders', 'url' => route('admin.sliders.index')],
+                ['text' => 'Slides', 'url' => route('admin.slides.index')],
                 ['text' => 'Edit']
 			]"
             :actions="[
-                ['text' => 'Create New', 'permission' => 'slider_create', 'icon' => 'fas fa-plus', 'class' => 'btn-success', 'url' => route('admin.sliders.create') ],
-                ['text' => 'Sliders', 'icon' => 'fas fa-list', 'url' => route('admin.sliders.index') ]
+                ['text' => 'Create New', 'permission' => 'slide_create', 'icon' => 'fas fa-plus', 'class' => 'btn-success', 'url' => route('admin.slides.create') ],
+                ['text' => 'Slides', 'icon' => 'fas fa-list', 'url' => route('admin.slides.index') ]
             ]"
 		/>
 
-
     <div class="row">
         <div class="col-md-7">
-            <form action="{{ route('admin.sliders.update', [$slider]) }}" method="POST" enctype="multipart/form-data" class="card">
+            <form action="{{ route('admin.slides.update', [$slide]) }}" method="POST" enctype="multipart/form-data" class="card">
                 @csrf
                 @method('PUT')
                 <div class="card-body">
                     <div class="d-flex">
                     	<div class="mr-2" id="preview-img">
-                        	<img src="{{ $slider->image_sm() }}" alt="" class="img-thumbnail" style="max-height: 70px;">
+                        	<img src="{{ $slide->image_sm() }}" alt="" class="img-thumbnail" style="max-height: 70px;">
                     	</div>
                         <div class="form-group flex-fill">
                             <label for="">Select Image <span class="text-danger">*</span></label>
@@ -45,15 +44,15 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="">Set Order </label>
-                                <input type="number" name="set_order" class="form-control" value="{{ $slider->set_order }}">
+                                <input type="number" name="set_order" class="form-control" value="{{ $slide->set_order }}">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="">Status</label>
                                 <select name="status" required class="form-control">
-                                    <option value="1" {{ ($slider->status == '1') ? 'selected' : '' }} >Active</option>
-                                    <option value="0" {{ ($slider->status == '0') ? 'selected' : '' }} >In-Active</option>
+                                    <option value="1" {{ ($slide->status == '1') ? 'selected' : '' }} >Active</option>
+                                    <option value="0" {{ ($slide->status == '0') ? 'selected' : '' }} >In-Active</option>
                                 </select>
                             </div>
                         </div>
@@ -63,7 +62,7 @@
                                 <select name="display_size" required class="form-control">
                                     <option value="">-- Select --</option>
                                     @foreach(config('site.slider.sizes') as $key => $dimentions)
-                                        <option value="{{ $key }}" {{ ($key == $slider->display_size) ? 'selected' : '' }} >
+                                        <option value="{{ $key }}" {{ ($key == $slide->display_size) ? 'selected' : '' }} >
                                             {{ ucfirst($key).' ('. $dimentions['width'].' x '.$dimentions['height'].')' }}
                                         </option>
                                     @endforeach
@@ -73,7 +72,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">URL Link </label>
-                        <input type="url" name="url_link" class="form-control" placeholder="https://webpage.con/page-url" value="{{ $slider->url_link }}">
+                        <input type="url" name="url_link" class="form-control" placeholder="https://webpage.con/page-url" value="{{ $slide->url_link }}">
                     </div>
                 </div>
                 <div class="card-footer">

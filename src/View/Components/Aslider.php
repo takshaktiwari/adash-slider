@@ -2,7 +2,7 @@
 
 namespace Takshak\Aslider\View\Components;
 
-use App\Models\Slider;
+use App\Models\Slide;
 use Illuminate\Support\Facades\View;
 use Jenssegers\Agent\Agent;
 use Illuminate\View\Component;
@@ -48,13 +48,12 @@ class Aslider extends Component
 
         $this->options = is_array($this->options) ? json_encode($this->options) : $this->options;
         $this->setSlides($size, $random, $limit);
-
     }
 
     public function setSlides($size, $random, $limit)
     {
-        $query = Slider::active();
-        if($size) {
+        $query = Slide::active();
+        if ($size) {
             $query->where('display_size', $size);
         } else {
             $agent = new Agent();

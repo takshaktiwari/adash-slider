@@ -1,0 +1,100 @@
+<?php
+
+namespace Database\Factories;
+
+use App\Models\Slider;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
+use Takshak\Imager\Facades\Picsum;
+
+/**
+ * @extends Factory
+ */
+class SlideFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition(): array
+    {
+        return [
+            'slider_id'     =>  Slider::inRandomOrder()->first()->id,
+            'image_lg'      =>  'image_lg',
+            'image_md'      =>  'image_md',
+            'image_sm'      =>  'image_sm',
+            'display_size'  =>  'large',
+            'status'        =>  true,
+            'url_link'      =>  null
+        ];
+    }
+
+    public function size($size)
+    {
+        return $this->state(function (array $attributes) use ($size) {
+            return $this->getImages(config('site.slider.sizes.' . $size));
+        });
+    }
+
+    public function small()
+    {
+        return $this->state(function (array $attributes) {
+            return $this->getImages(config(
+                'site.slider.sizes.small',
+                [
+                    'width'     =>  500,
+                    'height'    =>  500,
+                ],
+
+            ));
+        });
+    }
+
+    public function medium(): SlideFactory
+    {
+        return $this->state(function (array $attributes) {
+            return $this->getImages(config(
+                'site.slider.sizes.medium',
+                [
+                    'width'     =>  1000,
+                    'height'    =>  600,
+                ],
+            ));
+        });
+    }
+
+    public function large(): SlideFactory
+    {
+        return $this->state(function (array $attributes) {
+            return $this->getImages(config(
+                'site.slider.sizes.large',
+                [
+                    'width'     =>  1500,
+                    'height'    =>  550,
+
+                ]
+            ));
+        });
+    }
+
+    public function getImages($dimensions): array
+    {
+        $image_lg = 'sliders/' . Str::of(microtime())->slug() . '.jpg';
+        $image_md = 'sliders/md/' . Str::of(microtime())->slug() . '.jpg';
+        $image_sm = 'sliders/sm/' . Str::of(microtime())->slug() . '.jpg';
+
+        Picsum::dimensions($dimensions['width'], $dimensions['height'])
+            ->basePath(\Storage::disk('public')->path('/'))
+            ->save($image_lg)
+            ->copy($image_md, $dimensions['width'] / 2)
+            ->copy($image_sm, $dimensions['width'] / 4)
+            ->destroy();
+
+        return [
+            'image_lg' => $image_lg,
+            'image_md' => $image_md,
+            'image_sm' => $image_sm,
+        ];
+    }
+}

@@ -2,36 +2,28 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
+use App\Models\Slide;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Slider extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    protected $casts = [
+        'size_small'    =>  'array',
+        'size_medium'   =>  'array',
+        'size_large'    =>  'array',
+    ];
 
-    public function image_lg()
+    /**
+     * Get all of the slides for the Slider
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function slides(): HasMany
     {
-        return ($this->image_lg && \Storage::disk('public')->exists($this->image_lg))
-                ? url('storage/app/public/'.$this->image_lg)
-                : 'https://via.placeholder.com/1000x800?text=No+Image';
-    }
-    public function image_md()
-    {
-        return ($this->image_md && \Storage::disk('public')->exists($this->image_md))
-                ? url('storage/app/public/'.$this->image_md)
-                : 'https://via.placeholder.com/500x400?text=No+Image';
-    }
-    public function image_sm()
-    {
-        return ($this->image_sm && \Storage::disk('public')->exists($this->image_sm))
-                ? url('storage/app/public/'.$this->image_sm)
-                : 'https://via.placeholder.com/250x200?text=No+Image';
-    }
-
-    public function scopeActive(Builder $query)
-    {
-        return $query->where('status', true);
+        return $this->hasMany(Slide::class);
     }
 }

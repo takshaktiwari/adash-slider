@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Takshak\Aslider\Traits\Controllers\Admin\SliderTrait;
 
 class SliderController extends Controller
 {
     use SliderTrait;
-
 }

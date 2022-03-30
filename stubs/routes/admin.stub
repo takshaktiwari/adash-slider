@@ -1,1 +1,2 @@
+    Route::resource('slides', SlideController::class)->except(['show']);
     Route::resource('sliders', SliderController::class)->except(['show']);

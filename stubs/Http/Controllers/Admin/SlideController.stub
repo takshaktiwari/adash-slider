@@ -1,0 +1,13 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Takshak\Aslider\Traits\Controllers\Admin\SlideTrait;
+
+class SlideController extends Controller
+{
+    use SlideTrait;
+
+}

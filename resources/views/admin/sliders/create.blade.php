@@ -1,75 +1,98 @@
 <x-admin.layout>
-	<x-admin.breadcrumb
-			title='Create Slider'
-			:links="[
-				['text' => 'Dashboard', 'url' => route('admin.dashboard') ],
-                ['text' => 'Sliders', 'url' => route('admin.sliders.index')],
-                ['text' => 'Create']
-			]"
-            :actions="[
-                ['text' => 'Sliders', 'icon' => 'fas fa-list', 'url' => route('admin.sliders.index') ]
-            ]"
-		/>
+    <x-admin.breadcrumb title='Sliders' :links="[
+   ['text' => 'Dashboard', 'url' => route('admin.dashboard') ],
+            ['text' => 'Sliders']
+  ]" :actions="[
+            ['text' => 'All Sliders', 'icon' => 'fas fa-plus', 'url' => route('admin.sliders.index') ],
+        ]" />
 
 
     <div class="row">
-        <div class="col-md-7">
-            <form action="{{ route('admin.sliders.store') }}" method="POST" enctype="multipart/form-data" class="card shadow-sm">
+        <div class="col-md-6">
+            <form action="{{ route('admin.sliders.store') }}" method="POST" class="card shadow">
                 @csrf
-                <div class="card-body">
+                <div class="card-body table-responsive">
+                    <div class="form-group">
+                        <label for="">Name <span class="text-danger">*</span></label>
+                        <input type="text" name="name" class="form-control" placeholder="eg. Slider name" required>
+                    </div>
+
                     <div class="row">
-                        <div class="col">
+                        <div class="col-6">
                             <div class="form-group">
-                                <label for="">Set Order </label>
-                                <input type="number" name="set_order" class="form-control" value="0" value="{{ old('set_order') }}">
+                                <label for="">Width: <span class="small">(Small)</span><span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <input type="number" name="size_small[width]" class="form-control" required placeholder="eg. 1500">
+                                    <span class="input-group-text">px</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-6">
                             <div class="form-group">
-                                <label for="">Status</label>
-                                <select name="status" required class="form-control">
-                                    <option value="1">Active</option>
-                                    <option value="0">In-Active</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="">Display Size <span class="text-danger">*</span></label>
-                                <select name="display_size" required class="form-control">
-                                    <option value="">-- Select --</option>
-                                    @foreach(config('site.slider.sizes') as $key => $dimentions)
-                                        <option value="{{ $key }}">
-                                            {{ ucfirst($key).' ('. $dimentions['width'].' x '.$dimentions['height'].')' }}
-                                        </option>
-                                    @endforeach
-                                </select>
+                                <label for="">Height: <span class="small">(Small)</span><span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <input type="number" name="size_small[height]" class="form-control" required placeholder="eg. 1500">
+                                    <span class="input-group-text">px</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="">Select Image <span class="text-danger">*</span></label>
-                        <input type="file" name="slide" class="form-control" required id="crop-image">
-                        <div class="small text-secondary">
-                            <div><b>*</b> Image format should be 'jpg' or 'png'</div>
-                            <div>
-                                <b>*</b> Image should be:
-                                @foreach(config('site.slider.sizes') as $key => $dimentions)
-                                    <span class="ml-2">
-                                        <b>{{ $key }}: </b>
-                                        {{ $dimentions['width'].' x '.$dimentions['height'] }}
-                                    </span>
-                                @endforeach
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="">Width: <span class="small">(Medium)</span><span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <input type="number" name="size_medium[width]" class="form-control" required placeholder="eg. 1500">
+                                    <span class="input-group-text">px</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="">Height: <span class="small">(Medium)</span><span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <input type="number" name="size_medium[height]" class="form-control" required placeholder="eg. 1500">
+                                    <span class="input-group-text">px</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="">URL Link </label>
-                        <input type="url" name="url_link" class="form-control" placeholder="https://webpage.con/page-url" value="{{ old('url_link') }}">
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="">Width: <span class="small">(Large)</span><span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <input type="number" name="size_large[width]" class="form-control" required placeholder="eg. 1500">
+                                    <span class="input-group-text">px</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="">Height: <span class="small">(Large)</span><span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <input type="number" name="size_large[height]" class="form-control" required placeholder="eg. 1500">
+                                    <span class="input-group-text">px</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="">Default Bg Color</label>
+                                <input type="color" name="bg_color" class="form-control" style="height: 38px; padding: 4px;">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <input type="submit" class="btn btn-primary px-5">
+                    <button type="submit" class="btn btn-dark px-4">
+                        <i class="fas fa-save"></i> Submit
+                    </button>
                 </div>
             </form>
         </div>

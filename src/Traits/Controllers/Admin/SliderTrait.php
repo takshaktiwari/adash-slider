@@ -3,19 +3,18 @@
 namespace Takshak\Aslider\Traits\Controllers\Admin;
 
 use App\Models\Slider;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
-use Takshak\Aslider\Actions\SliderAction;
 
 trait SliderTrait
 {
     public function index()
     {
-        $slides = Slider::get();
+        $sliders = Slider::withCount('slides')->get();
         return View::first(
             ['admin.sliders.index', 'aslider::admin.sliders.index'],
-            compact('slides')
+            compact('sliders')
         );
     }
 
@@ -26,44 +25,25 @@ trait SliderTrait
         );
     }
 
-    public function store(Request $request, SliderAction $action)
+    public function store(Request $request)
     {
-        $request->validate([
-            'slide'     =>  'required|image',
-            'set_order' =>  'required|numeric',
-            'status'    =>  'required|numeric',
-            'display_size'  =>  'required'
+        $validated = $request->validate([
+            'name'      =>  'required',
+            'size_small'         =>  'required|array',
+            'size_small.width'   =>  'required|numeric',
+            'size_small.height'  =>  'required|numeric',
+            'size_medium'        =>  'required|array',
+            'size_medium.width'  =>  'required|numeric',
+            'size_medium.height' =>  'required|numeric',
+            'size_large'         =>  'required|array',
+            'size_large.width'   =>  'required|numeric',
+            'size_large.height'  =>  'required|numeric',
+            'bg_color'      =>  'required',
         ]);
 
-        $slider = new Slider;
-        $slider = $action->save($request, $slider);
+        $validated['slug']  = Str::of($validated['name'])->slug('-');
+        Slider::create($validated);
 
-        return redirect()->route('admin.sliders.index')->withSuccess('SUCCESS !! New Slider is successfully generated.');
+        return redirect()->route('admin.sliders.index')->withSuccess('SUCCESS !! New slider has been added. Add some slides to it.');
     }
-
-    public function edit(Slider $slider)
-    {
-        return View::first(
-            ['admin.sliders.edit', 'aslider::admin.sliders.edit'],
-            compact('slider')
-        );
-    }
-
-    public function update(Request $request, Slider $slider, SliderAction $action)
-    {
-        $action->save($request, $slider);
-        return redirect()->route('admin.sliders.index')->withSuccess('SUCCESS !! Slider is successfully updated.');
-    }
-
-    public function destroy(Slider $slider)
-    {
-        Storage::disk('public')->delete([
-            $slider->image_lg,
-            $slider->image_md,
-            $slider->image_sm,
-        ]);
-        $slider->delete();
-        return redirect()->route('admin.sliders.index')->withSuccess('SUCCESS !! Slider is successfully deleted.');
-    }
-
 }

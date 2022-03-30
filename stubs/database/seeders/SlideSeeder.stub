@@ -1,0 +1,46 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Slide;
+use App\Models\Slider;
+use Faker\Generator as Faker;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
+
+class SlideSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run(Faker $faker)
+    {
+
+        $sizes = [
+            'small' =>  [
+                'width'     =>  500,
+                'height'    =>  500,
+            ],
+            'medium'    =>  [
+                'width'     =>  1000,
+                'height'    =>  600,
+            ],
+            'large' =>  [
+                'width'     =>  1500,
+                'height'    =>  550,
+            ]
+        ];
+
+        Slider::factory()->create();
+        Storage::disk('public')->deleteDirectory('sliders');
+        Slide::truncate();
+        foreach (config('site.slider.sizes', $sizes) as $size => $dimensions) {
+            Slide::factory()->$size()->count(4)->create([
+                'display_size'  =>  $size,
+                'slider_id'     =>  Slider::inRandomOrder()->first()->id,
+            ]);
+        }
+    }
+}

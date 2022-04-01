@@ -2,6 +2,7 @@
 
 namespace Takshak\Aslider\Actions;
 
+use App\Models\Slider;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Takshak\Imager\Facades\Imager;
@@ -10,21 +11,22 @@ class SlideAction
 {
     public function save($request, $slide)
     {
+        $slide->slider_id =  $request->get('slider_id');
         $slide->set_order =  $request->post('set_order');
         $slide->status    =  $request->post('status');
         $slide->url_link  =  $request->post('url_link');
-        $slide->display_size  =  $request->post('display_size');
+        $slide->display_size  =  Str::of($request->post('display_size'))->after('size_');
 
         if ($request->file('slide')) {
+            $slider = Slider::findOrFail($request->get('slider_id'));
+            $display_size = $request->post('display_size');
+
             $fileName = Str::of(microtime())->slug() . '.jpg';
             $slide->image_lg = 'sliders/' . $fileName;
             $slide->image_md = 'sliders/md/' . $fileName;
             $slide->image_sm = 'sliders/sm/' . $fileName;
 
-            $imgWidth = config('site.slider.width');
-            if ($request->post('display_size')) {
-                $imgWidth = config('site.slider.sizes.' . $request->post('display_size') . '.width');
-            }
+            $imgWidth = (int)$slider->$display_size['width'] ?: config('site.slider.width');
 
             Imager::init($request->file('slide'))
                 ->basePath(Storage::disk('public')->path('/'))

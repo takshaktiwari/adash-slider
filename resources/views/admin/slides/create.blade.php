@@ -14,8 +14,11 @@
 
     <div class="row">
         <div class="col-md-7">
-            <form action="{{ route('admin.slides.store') }}" method="POST" enctype="multipart/form-data" class="card shadow-sm">
+            <form action="{{ route('admin.slides.store', ['slider_id' => request()->get('slider_id')]) }}" method="POST" enctype="multipart/form-data" class="card shadow-sm">
                 @csrf
+                <div class="card-header">
+                    <h5 class="my-auto">Slider: {{ $slider->name }}</h5>
+                </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
@@ -38,11 +41,9 @@
                                 <label for="">Display Size <span class="text-danger">*</span></label>
                                 <select name="display_size" required class="form-control">
                                     <option value="">-- Select --</option>
-                                    @foreach(config('site.slider.sizes') as $key => $dimentions)
-                                        <option value="{{ $key }}">
-                                            {{ ucfirst($key).' ('. $dimentions['width'].' x '.$dimentions['height'].')' }}
-                                        </option>
-                                    @endforeach
+                                    <option value="size_small">Small: {{ $slider->size_small['width'].' x '.$slider->size_small['height'] }}</option>
+                                    <option value="size_medium">Medium: {{ $slider->size_medium['width'].' x '.$slider->size_medium['height'] }}</option>
+                                    <option value="size_large">Large: {{ $slider->size_large['width'].' x '.$slider->size_large['height'] }}</option>
                                 </select>
                             </div>
                         </div>
@@ -54,12 +55,15 @@
                             <div><b>*</b> Image format should be 'jpg' or 'png'</div>
                             <div>
                                 <b>*</b> Image should be:
-                                @foreach(config('site.slider.sizes') as $key => $dimentions)
-                                    <span class="ml-2">
-                                        <b>{{ $key }}: </b>
-                                        {{ $dimentions['width'].' x '.$dimentions['height'] }}
-                                    </span>
-                                @endforeach
+                                <span class="ml-2">
+                                    <b>Small: </b> {{ $slider->size_small['width'].' x '.$slider->size_small['height'] }}
+                                </span>
+                                <span class="ml-2">
+                                    <b>Medium: </b> {{ $slider->size_medium['width'].' x '.$slider->size_medium['height'] }}
+                                </span>
+                                <span class="ml-2">
+                                    <b>Large: </b> {{ $slider->size_large['width'].' x '.$slider->size_large['height'] }}
+                                </span>
                             </div>
                         </div>
                     </div>

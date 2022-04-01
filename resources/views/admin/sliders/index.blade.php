@@ -23,7 +23,14 @@
                     @foreach($sliders as $key => $slider)
                     <tr>
                         <td>{{ $key+1 }}</td>
-                        <td>{{ $slider->name }}</td>
+                        <td>
+                            {{ $slider->name }}
+                            @if($slider->status)
+                                <span class="text-success">(Active)</span>
+                            @else
+                                <span class="text-danger">(Inactive)</span>
+                            @endif
+                        </td>
                         <td>
                             <span><b>S: </b>{{ $slider->size_small['width'].' X '.$slider->size_small['height'] }}</span>
                             <span class="text-dark px-1">|</span>
@@ -33,6 +40,10 @@
                         </td>
                         <td>{{ $slider->slides_count }} Slides</td>
                         <td class="font-size-20">
+                            <a href="{{ route('admin.slides.index', ['slider_id' => $slider->id]) }}" class="btn btn-sm btn-info" title="Slides">
+                                <i class="fas fa-images"></i>
+                            </a>
+
                             <a href="{{ route('admin.sliders.edit', [$slider]) }}" class="btn btn-sm btn-success" title="Edit this">
                                 <i class="fas fa-edit"></i>
                             </a>

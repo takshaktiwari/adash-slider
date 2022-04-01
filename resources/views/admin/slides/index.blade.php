@@ -6,7 +6,7 @@
             ['text' => 'Sliders']
 		]"
         :actions="[
-            ['text' => 'Create New', 'icon' => 'fas fa-plus', 'url' => route('admin.slides.create') ],
+            ['text' => 'Create New', 'icon' => 'fas fa-plus', 'url' => route('admin.slides.create', request()->all()) ],
         ]" />
 
 
@@ -39,11 +39,11 @@
                                 </div>
                             </td>
                             <td class="font-size-20">
-                                <a href="{{ route('admin.slides.edit', [$slide]) }}" class="btn btn-sm btn-success" title="Edit this">
+                                <a href="{{ route('admin.slides.edit', [$slide, 'slider_id' => $slide->slider_id]) }}" class="btn btn-sm btn-success" title="Edit this">
                                     <i class="fas fa-edit"></i>
                                 </a>
 
-                                <form action="{{ route('admin.slides.destroy', [$slide]) }}" method="POST" class="d-inline-block">
+                                <form action="{{ route('admin.slides.destroy', [$slide, 'slider_id' => $slide->slider_id]) }}" method="POST" class="d-inline-block">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-sm btn-danger" title="Delete this" onclick="return confirm('Are you sure to delete ?')">

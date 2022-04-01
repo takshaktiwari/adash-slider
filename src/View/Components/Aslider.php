@@ -3,6 +3,7 @@
 namespace Takshak\Aslider\View\Components;
 
 use App\Models\Slide;
+use App\Models\Slider;
 use Illuminate\Support\Facades\View;
 use Jenssegers\Agent\Agent;
 use Illuminate\View\Component;
@@ -11,7 +12,9 @@ class Aslider extends Component
 {
     public $options;
     public $slides;
+    public $slider;
     public function __construct(
+        $slider = 'Default',
         $size = null,
         $limit = null,
         $random = false,
@@ -25,6 +28,8 @@ class Aslider extends Component
         $items = 1,
         $responsive = []
     ) {
+        $this->slider = $slider;
+
         $this->options = $options ? $options : null;
 
         if (!$this->options) {
@@ -52,7 +57,15 @@ class Aslider extends Component
 
     public function setSlides($size, $random, $limit)
     {
-        $query = Slide::active();
+        $slider = Slider::query()
+            ->where(function ($query) {
+                $query->where('name', $this->slider)->orWhere('name', $this->slider);
+            })
+            ->where('status', true)
+            ->first();
+        abort_if(!$slider, 404, 'Slider not found');
+
+        $query = Slide::where('slider_id', $slider->id)->active();
         if ($size) {
             $query->where('display_size', $size);
         } else {

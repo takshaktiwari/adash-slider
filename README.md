@@ -31,7 +31,10 @@ Multiple sliders for different location can be added through admin panel.
 | items | 1 | Items shown at one slide |
 | items | 1 | Items shown at one slide |
 
+---
+
 Slider uses [OwlCarousel2](https://owlcarousel2.github.io/OwlCarousel2/) for slider.
+
 **`options:`** OwlCarousel2 options parameters should be 	passed in array format. eg:
 
     <x-aslider-aslider :options="[

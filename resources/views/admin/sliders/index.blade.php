@@ -32,11 +32,11 @@
                             @endif
                         </td>
                         <td>
-                            <span><b>S: </b>{{ $slider->size_small['width'].' X '.$slider->size_small['height'] }}</span>
+                            <span><b>S: </b>{{ $slider->size_small ? $slider->size_small['width'].' X '.$slider->size_small['height'] : '' }}</span>
                             <span class="text-dark px-1">|</span>
-                            <span><b>M: </b>{{ $slider->size_medium['width'].' X '.$slider->size_medium['height'] }}</span>
+                            <span><b>M: </b>{{ $slider->size_medium ? $slider->size_medium['width'].' X '.$slider->size_medium['height'] : '' }}</span>
                             <span class="text-dark px-1">|</span>
-                            <span><b>L: </b>{{ $slider->size_large['width'].' X '.$slider->size_large['height'] }}</span>
+                            <span><b>L: </b>{{ $slider->size_large ? $slider->size_large['width'].' X '.$slider->size_large['height'] : '' }}</span>
                         </td>
                         <td>{{ $slider->slides_count }} Slides</td>
                         <td class="font-size-20">

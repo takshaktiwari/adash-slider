@@ -7,7 +7,7 @@
                 ['text' => 'Create']
 			]"
             :actions="[
-                ['text' => 'Sliders', 'icon' => 'fas fa-list', 'url' => route('admin.slides.index') ]
+                ['text' => 'Slides', 'icon' => 'fas fa-list', 'url' => route('admin.slides.index', ['slider_id' => request()->get('slider_id')]) ]
             ]"
 		/>
 

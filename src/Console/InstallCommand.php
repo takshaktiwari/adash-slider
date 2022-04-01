@@ -91,6 +91,7 @@ class InstallCommand extends Command
         $targetFile = $this->filesystem->get(base_path('routes/admin.php'));
         if (!$this->str->of($targetFile)->contains("'slides'")) {
             $lines = Str::of($targetFile)->before('use');
+            $lines .= "use App\Http\Controllers\Admin\SliderController;\n";
             $lines .= "use App\Http\Controllers\Admin\SlideController;\n";
             $lines .= "use";
             $lines .= Str::of($targetFile)->after('use')->beforeLast('});');

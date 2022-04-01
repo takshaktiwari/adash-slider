@@ -85,7 +85,7 @@
                             <div class="form-group">
                                 <label for="">Status <span class="text-danger">*</span></label>
                                 <select name="status" class="form-control" required>
-                                    <option value="">0</option>
+                                    <option value="">-- Select --</option>
                                     <option value="1">Active</option>
                                     <option value="0">In-active</option>
                                 </select>

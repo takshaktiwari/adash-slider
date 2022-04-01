@@ -1,9 +1,10 @@
 <x-admin.layout>
 	<x-admin.breadcrumb
-		title='Sliders'
+		title='Slides'
 		:links="[
 			['text' => 'Dashboard', 'url' => route('admin.dashboard') ],
-            ['text' => 'Sliders']
+            ['text' => 'Sliders', 'url' => route('admin.sliders.index')],
+            ['text' => 'Slides']
 		]"
         :actions="[
             ['text' => 'Create New', 'icon' => 'fas fa-plus', 'url' => route('admin.slides.create', request()->all()) ],

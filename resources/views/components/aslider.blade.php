@@ -1,10 +1,22 @@
 <div {{ $attributes->merge(['class' => 'aslider owl-carousel owl-theme', 'id' => '']) }}>
     @foreach($slides as $slide)
-        <div class="aslider-item">
-            <a href="{{ $slide->url_link }}" target="_blank">
-                <img src="{{ $slide->image_lg() }}" alt="aslider image">
-            </a>
-        </div>
+        @if($slide->in_background)
+            <div class="aslider-item in_background" style="background-image: url('{{ $slide->image_lg() }}');">
+                <div class="content p-3 p-sm-4 p-md-5">
+                    <h1 class="title">{{ $slide->title }}</h1>
+                    <p class="subtitle">{{ $slide->subtitle }}</p>
+                    <a href="{{ $slide->url_link }}" class="btn">Learn More</a>
+                    @if($slide->url_link)
+                    @endif
+                </div>
+            </div>
+        @else
+            <div class="aslider-item">
+                <a href="{{ $slide->url_link }}" target="_blank">
+                    <img src="{{ $slide->image_lg() }}" alt="aslider image">
+                </a>
+            </div>
+        @endif
     @endforeach
 </div>
 
@@ -13,6 +25,53 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <style>
+            .aslider{
+                background-color: {{ $slides->first()->slider->bg_color }};
+            }
+            .aslider .in_background{
+                max-width: 100%;
+                background-position: center;
+                background-size: cover;
+                display: flex;
+                padding: 20px;
+                min-height: {{ $slider_size['height'] }}px;
+            }
+            .aslider .in_background .content{
+                margin: auto;
+                color: white;
+                text-align: center;
+                background-color: rgba(50, 50, 50, 0.3);
+                max-width: 800px;
+                border: 10px solid transparent;
+                transition: all 0.3s ease-in;
+            }
+            .aslider .in_background .content:hover{
+                box-shadow: 0 .4rem 0.8rem rgba(0,0,0,.4)!important;
+                background-color: rgba(50, 50, 50, 0.5);
+                transition: all 0.3s ease-in;
+            }
+            .aslider .in_background .content .title{
+                font-weight: 800;
+            }
+            .aslider .in_background .content .subtitle{
+                font-size: 1.2rem;
+            }
+            .aslider .in_background .content .btn{
+                background-color: rgba(50, 50, 50, 1);
+                color: #fff;
+                font-weight: 700;
+                font-size: 1rem;
+                border-radius: 2px;
+                padding: 8px 28px;
+                border: 2px solid transparent;
+            }
+            .aslider .in_background .content .btn:hover{
+                border: 2px solid rgba(50, 50, 50, 1);
+                background-color: transparent;
+                color: rgba(50, 50, 50, 1);
+                background-color: rgba(255, 255, 255, 0.4);
+            }
+
             .aslider img { width: 100% }
             .aslider.owl-carousel .owl-nav button{
                 background: rgba(50, 50, 50, 0.6);

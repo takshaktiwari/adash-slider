@@ -13,6 +13,8 @@ class Aslider extends Component
     public $options;
     public $slides;
     public $slider;
+    public $agent;
+    public $slider_size;
     public function __construct(
         $slider = 'Default',
         $size = null,
@@ -28,8 +30,10 @@ class Aslider extends Component
         $items = 1,
         $responsive = []
     ) {
-        $this->slider = $slider;
 
+        $this->agent = new Agent();
+
+        $this->slider = $slider;
         $this->options = $options ? $options : null;
 
         if (!$this->options) {
@@ -53,6 +57,18 @@ class Aslider extends Component
 
         $this->options = is_array($this->options) ? json_encode($this->options) : $this->options;
         $this->setSlides($size, $random, $limit);
+
+        if ($size) {
+            $this->slider_size = $this->slides->first()->slider->$keyName;
+        } else {
+            if ($this->agent->isTablet()) {
+                $this->slider_size = $this->slides->first()->slider->size_medium;
+            } elseif ($this->agent->isMobile()) {
+                $this->slider_size = $this->slides->first()->slider->size_small;
+            } else {
+                $this->slider_size = $this->slides->first()->slider->size_large;
+            }
+        }
     }
 
     public function setSlides($size, $random, $limit)

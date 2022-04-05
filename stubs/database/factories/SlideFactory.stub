@@ -21,11 +21,14 @@ class SlideFactory extends Factory
     {
         return [
             'slider_id'     =>  Slider::inRandomOrder()->first()->id,
+            'title'         =>  $this->faker->realText(rand(20, 50), 2),
+            'subtitle'      =>  $this->faker->realText(rand(50, 150), 2),
             'image_lg'      =>  'image_lg',
             'image_md'      =>  'image_md',
             'image_sm'      =>  'image_sm',
             'display_size'  =>  'large',
             'status'        =>  true,
+            'in_background' =>  rand(0, 1),
             'url_link'      =>  null
         ];
     }

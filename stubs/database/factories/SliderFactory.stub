@@ -24,9 +24,9 @@ class SliderFactory extends Factory
             'name'  =>  $name,
             'slug'  =>  $slug,
             'status'    => true,
-            'size_small'    =>  config('site.slider.sizes.small'),
-            'size_medium'   =>  config('site.slider.sizes.medium'),
-            'size_large'    =>  config('site.slider.sizes.large'),
+            'size_small'    =>  config('site.slider.sizes.small') ?: ['width' => 500, 'height' => 500],
+            'size_medium'   =>  config('site.slider.sizes.medium') ?: ['width' => 1000, 'height' => 600],
+            'size_large'    =>  config('site.slider.sizes.large') ?: ['width' => 1500, 'height' => 550],
             'in_background' =>  rand(0, 1),
         ];
     }

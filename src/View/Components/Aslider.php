@@ -14,7 +14,7 @@ class Aslider extends Component
     public $slides;
     public $slider;
     public $agent;
-    public $slider_size;
+    public $slider_size = [];
     public $thisSlider;
     public function __construct(
         $slider = 'Default',

@@ -15,6 +15,7 @@ class Aslider extends Component
     public $slider;
     public $agent;
     public $slider_size;
+    public $thisSlider;
     public function __construct(
         $slider = 'Default',
         $size = null,
@@ -59,29 +60,30 @@ class Aslider extends Component
         $this->setSlides($size, $random, $limit);
 
         if ($size) {
-            $this->slider_size = $this->slides->first()->slider->$keyName;
+            $keyName = 'size_' . $size;
+            $this->slider_size = $this->thisSlider->$keyName;
         } else {
             if ($this->agent->isTablet()) {
-                $this->slider_size = $this->slides->first()->slider->size_medium;
+                $this->slider_size = $this->thisSlider->size_medium;
             } elseif ($this->agent->isMobile()) {
-                $this->slider_size = $this->slides->first()->slider->size_small;
+                $this->slider_size = $this->thisSlider->size_small;
             } else {
-                $this->slider_size = $this->slides->first()->slider->size_large;
+                $this->slider_size = $this->thisSlider->size_large;
             }
         }
     }
 
     public function setSlides($size, $random, $limit)
     {
-        $slider = Slider::query()
+        $this->thisSlider = Slider::query()
             ->where(function ($query) {
                 $query->where('name', $this->slider)->orWhere('name', $this->slider);
             })
             ->where('status', true)
             ->first();
-        abort_if(!$slider, 404, 'Slider not found');
+        abort_if(!$this->thisSlider, 404, 'Slider not found');
 
-        $query = Slide::where('slider_id', $slider->id)->active();
+        $query = Slide::where('slider_id', $this->thisSlider->id)->active();
         if ($size) {
             $query->where('display_size', $size);
         } else {

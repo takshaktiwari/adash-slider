@@ -27,6 +27,7 @@ class SliderFactory extends Factory
             'size_small'    =>  config('site.slider.sizes.small'),
             'size_medium'   =>  config('site.slider.sizes.medium'),
             'size_large'    =>  config('site.slider.sizes.large'),
+            'in_background' =>  rand(0, 1),
         ];
     }
 }

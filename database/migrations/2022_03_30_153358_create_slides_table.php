@@ -25,7 +25,6 @@ return new class extends Migration
             $table->string('url_link', 255)->nullable()->default(null);
             $table->string('display_size', 50)->nullable()->default('default')->comment('small, medium, large, x_large');
             $table->boolean('status')->default(true)->nullable();
-            $table->boolean('in_background')->default(false)->nullable();
             $table->timestamps();
         });
     }

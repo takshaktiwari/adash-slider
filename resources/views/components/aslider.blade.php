@@ -1,12 +1,12 @@
 <div {{ $attributes->merge(['class' => 'aslider owl-carousel owl-theme', 'id' => '']) }}>
     @foreach($slides as $slide)
-        @if($slide->in_background)
+        @if($thisSlider->in_background)
             <div class="aslider-item in_background" style="background-image: url('{{ $slide->image_lg() }}');">
                 <div class="content p-3 p-sm-4 p-md-5">
                     <h1 class="title">{{ $slide->title }}</h1>
                     <p class="subtitle">{{ $slide->subtitle }}</p>
-                    <a href="{{ $slide->url_link }}" class="btn">Learn More</a>
                     @if($slide->url_link)
+                        <a href="{{ $slide->url_link }}" class="btn">Learn More</a>
                     @endif
                 </div>
             </div>
@@ -26,7 +26,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <style>
             .aslider{
-                background-color: {{ $slides->first()->slider->bg_color }};
+                background-color: {{ $thisSlider->bg_color }};
             }
             .aslider .in_background{
                 max-width: 100%;

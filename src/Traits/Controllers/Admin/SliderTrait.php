@@ -40,6 +40,7 @@ trait SliderTrait
             'size_large.height'     =>  'required|numeric',
             'status'                =>  'nullable|boolean',
             'bg_color'              =>  'required',
+            'in_background'         =>  'nullable|boolean',
         ]);
 
         $validated['slug']  = Str::of($validated['name'])->slug('-');
@@ -71,6 +72,7 @@ trait SliderTrait
             'size_large.height'     =>  'required|numeric',
             'status'                =>  'nullable|boolean',
             'bg_color'              =>  'required',
+            'in_background'         =>  'nullable|boolean',
         ]);
         $slider->update($validated);
         return redirect()->route('admin.sliders.index')->withSuccess('SUCCESS !! Slider has been updated.');

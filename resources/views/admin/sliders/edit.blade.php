@@ -113,6 +113,16 @@
                                 <input type="color" name="bg_color" class="form-control" value="{{ $slider->bg_color }}" style="height: 38px; padding: 4px;">
                             </div>
                         </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="">Image Placement</label>
+                                <select name="in_background" class="form-control" required>
+                                    <option value="">-- Select --</option>
+                                    <option value="1" {{ $slider->in_background ? 'selected' : '' }} >In background</option>
+                                    <option value="0" {{ (!$slider->in_background) ? 'selected' : '' }} >Standalone</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer">

@@ -14,7 +14,9 @@ class SlideAction
         $slide->slider_id =  $request->get('slider_id');
         $slide->set_order =  $request->post('set_order');
         $slide->status    =  $request->post('status');
-        $slide->url_link  =  $request->post('url_link');
+        $slide->title       =  $request->post('title');
+        $slide->subtitle    =  $request->post('subtitle');
+        $slide->url_link    =  $request->post('url_link');
         $slide->display_size  =  Str::of($request->post('display_size'))->after('size_');
 
         if ($request->file('slide')) {

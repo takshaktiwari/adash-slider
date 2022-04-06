@@ -74,6 +74,19 @@
                             </div>
                         </div>
                     </div>
+                    @if($slider->in_background)
+
+                    <div class="form-group">
+                        <label for="">Title</label>
+                        <input type="text" name="title" class="form-control" value="{{ $slide->title }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Sub Title </label>
+                        <input type="text" name="subtitle" class="form-control"  value="{{ $slide->subtitle }}">
+                    </div>
+                    @endif
+                    
                     <div class="form-group">
                         <label for="">URL Link </label>
                         <input type="url" name="url_link" class="form-control" placeholder="https://webpage.con/page-url" value="{{ $slide->url_link }}">

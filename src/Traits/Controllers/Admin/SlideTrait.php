@@ -22,6 +22,7 @@ trait SlideTrait
 
     public function create(Request $request)
     {
+
         $slider = Slider::find($request->get('slider_id'));
         if (!$slider) {
             return redirect()->route('admin.sliders.index')->withErrors('Please select a slider first.');
@@ -34,6 +35,8 @@ trait SlideTrait
 
     public function store(Request $request, SlideAction $action)
     {
+
+        //return $request->all();
         $request->validate([
             'slide'     =>  'required|image',
             'set_order' =>  'required|numeric',
@@ -62,6 +65,8 @@ trait SlideTrait
 
     public function update(Request $request, Slide $slide, SlideAction $action)
     {
+
+        //return $request->all();
         $action->save($request, $slide);
         return redirect()->route('admin.slides.index', ['slider_id' => $request->get('slider_id')])->withSuccess('SUCCESS !! Slide is successfully updated.');
     }

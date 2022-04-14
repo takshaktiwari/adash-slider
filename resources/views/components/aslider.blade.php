@@ -1,6 +1,6 @@
 <div {{ $attributes->merge(['class' => 'aslider owl-carousel owl-theme', 'id' => '']) }}>
-    @isset($items)
-        {!! $items !!}
+    @if($customSlides && isset($slideItems))
+        {!! $slideItems !!}
     @else
         @foreach($slides as $slide)
             @if($thisSlider->in_background)
@@ -21,7 +21,7 @@
                 </div>
             @endif
         @endforeach
-    @endisset
+    @endif
 </div>
 
 @once
@@ -30,7 +30,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <style>
             .aslider{
-                background-color: {{ $thisSlider->bg_color }};
+                background-color: {{ $thisSlider->bg_color ?? '#eaeaea' }};
             }
             .aslider .in_background{
                 max-width: 100%;
@@ -38,7 +38,7 @@
                 background-size: cover;
                 display: flex;
                 padding: 20px;
-                min-height: {{ $slider_size['height'] }}px;
+                min-height: {{ isset($slider_size['height']) ? $slider_size['height'].'px' : 'auto' }};
             }
             .aslider .in_background .content{
                 margin: auto;

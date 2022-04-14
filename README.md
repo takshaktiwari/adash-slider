@@ -29,7 +29,7 @@ Multiple sliders for different location can be added through admin panel.
 | nav | false | Show navigation buttons |
 | dots | true | Sow navigation dots |
 | items | 1 | Items shown at one slide |
-| items | 1 | Items shown at one slide |
+| custom-slides | false | Get your custom slides |
 
 ---
 
@@ -61,3 +61,20 @@ Slider uses [OwlCarousel2](https://owlcarousel2.github.io/OwlCarousel2/) for sli
         ]" />
 
 For more options and customization go to  [OwlCarousel2 documentation](https://owlcarousel2.github.io/OwlCarousel2/docs/started-welcome.html)
+
+##  Getting your custom slides
+You can make your own slides for the slider. You just need to add an attribute `custom-slides="1"` with `slideItems` slot. Eg:
+
+    <x-aslider-aslider custom-slides="1">
+        <x-slot:slideItems>
+            <h1 class="text-center py-5 bg-secondary mb-0 text-white">
+                Lorem ipsum dolor sit amet.
+            </h1>
+            <h1 class="text-center py-5 bg-secondary mb-0 text-white">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            </h1>
+            <h1 class="text-center py-5 bg-secondary mb-0 text-white">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, optio!
+            </h1>
+        </x-slot>
+    </x-aslider-aslider>

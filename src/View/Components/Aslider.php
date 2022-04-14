@@ -16,6 +16,7 @@ class Aslider extends Component
     public $agent;
     public $slider_size = [];
     public $thisSlider;
+    public $customSlides = false;
     public function __construct(
         $slider = 'Default',
         $size = null,
@@ -29,8 +30,10 @@ class Aslider extends Component
         $nav = false,
         $dots = true,
         $items = 1,
-        $responsive = []
+        $responsive = [],
+        $customSlides = false
     ) {
+        $this->customSlides = (bool)$customSlides;
 
         $this->agent = new Agent();
 
@@ -57,18 +60,21 @@ class Aslider extends Component
         }
 
         $this->options = is_array($this->options) ? json_encode($this->options) : $this->options;
-        $this->setSlides($size, $random, $limit);
 
-        if ($size) {
-            $keyName = 'size_' . $size;
-            $this->slider_size = $this->thisSlider->$keyName;
-        } else {
-            if ($this->agent->isTablet()) {
-                $this->slider_size = $this->thisSlider->size_medium;
-            } elseif ($this->agent->isMobile()) {
-                $this->slider_size = $this->thisSlider->size_small;
+        if (!$this->customSlides) {
+            $this->setSlides($size, $random, $limit);
+
+            if ($size) {
+                $keyName = 'size_' . $size;
+                $this->slider_size = $this->thisSlider->$keyName;
             } else {
-                $this->slider_size = $this->thisSlider->size_large;
+                if ($this->agent->isTablet()) {
+                    $this->slider_size = $this->thisSlider->size_medium;
+                } elseif ($this->agent->isMobile()) {
+                    $this->slider_size = $this->thisSlider->size_small;
+                } else {
+                    $this->slider_size = $this->thisSlider->size_large;
+                }
             }
         }
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Takshak\Aslider\Models;
 
 use App\Models\Slider;
 use Illuminate\Database\Eloquent\Builder;

@@ -2,8 +2,8 @@
 
 namespace Takshak\Aslider\View\Components;
 
-use App\Models\Slide;
-use App\Models\Slider;
+use Takshak\Aslider\Models\Slide;
+use Takshak\Aslider\Models\Slider;
 use Illuminate\Support\Facades\View;
 use Jenssegers\Agent\Agent;
 use Illuminate\View\Component;

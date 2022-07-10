@@ -2,8 +2,8 @@
 
 namespace Takshak\Aslider\Traits\Controllers\Admin;
 
-use App\Models\Slide;
-use App\Models\Slider;
+use Takshak\Aslider\Models\Slide;
+use Takshak\Aslider\Models\Slider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
@@ -22,7 +22,6 @@ trait SlideTrait
 
     public function create(Request $request)
     {
-
         $slider = Slider::find($request->get('slider_id'));
         if (!$slider) {
             return redirect()->route('admin.sliders.index')->withErrors('Please select a slider first.');

@@ -2,7 +2,7 @@
 
 namespace Takshak\Aslider\Traits\Controllers\Admin;
 
-use App\Models\Slider;
+use Takshak\Aslider\Models\Slider;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;

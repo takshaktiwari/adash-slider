@@ -41,15 +41,6 @@ class InstallCommand extends Command
         }
 
         $replacements = [
-            [
-                $this->stubsPath . '/Models/Slider.stub',
-                app_path('Models/Slider.php')
-            ],
-            [
-                $this->stubsPath . '/Models/Slide.stub',
-                app_path('Models/Slide.php')
-            ],
-
             // Controllers
             [
                 $this->stubsPath . '/Http/Controllers/Admin/SliderController.stub',

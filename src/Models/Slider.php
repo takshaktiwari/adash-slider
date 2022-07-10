@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Takshak\Aslider\Models;
 
 use App\Models\Slide;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

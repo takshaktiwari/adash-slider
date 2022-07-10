@@ -1,6 +1,6 @@
 
 #  Introduction
-An extension for blog post for takshak/adash package. Get your blog ready in just couple of minutes, just follow the simple steps.
+An extension for slider for takshak/adash package. This will he helper to create image slider or even for cards, products etc
 
 ##  Installation
 Require the package with composer
@@ -9,7 +9,7 @@ Require the package with composer
 
 Run the command to setup the table, pages, models and all
 
-    php artisan adash-slider::install
+    php artisan adash-slider:install
 
 Add Component `<x-aslider-aslider />` to your view where you want to show the slider.
 Multiple sliders for different location can be added through admin panel.

@@ -3,6 +3,7 @@
 namespace Takshak\Aslider\Models;
 
 use App\Models\Slide;
+use Database\Factories\SliderFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -16,6 +17,11 @@ class Slider extends Model
         'size_medium'   =>  'array',
         'size_large'    =>  'array',
     ];
+
+    protected static function newFactory()
+    {
+        return SliderFactory::new();
+    }
 
     /**
      * Get all of the slides for the Slider

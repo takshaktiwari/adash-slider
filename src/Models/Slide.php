@@ -3,6 +3,7 @@
 namespace Takshak\Aslider\Models;
 
 use App\Models\Slider;
+use Database\Factories\SlideFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,6 +13,11 @@ class Slide extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    protected static function newFactory()
+    {
+        return SlideFactory::new();
+    }
 
     /**
      * Get the slider that owns the Slide

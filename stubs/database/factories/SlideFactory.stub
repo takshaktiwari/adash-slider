@@ -2,7 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\Slider;
+use Takshak\Aslider\Models\Slide;
+use Takshak\Aslider\Models\Slider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Takshak\Imager\Facades\Picsum;
@@ -12,6 +13,9 @@ use Takshak\Imager\Facades\Picsum;
  */
 class SlideFactory extends Factory
 {
+
+    protected $model = Slide::class;
+
     /**
      * Define the model's default state.
      *

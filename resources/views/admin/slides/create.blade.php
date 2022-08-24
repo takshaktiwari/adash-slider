@@ -51,7 +51,7 @@
                     <div class="form-group">
                         <label for="">Select Image <span class="text-danger">*</span></label>
                         <input type="file" name="slide" class="form-control" required id="crop-image">
-                        <div class="small text-secondary">
+                        <div class="small text-info">
                             <div><b>*</b> Image format should be 'jpg' or 'png'</div>
                             <div>
                                 <b>*</b> Image should be:

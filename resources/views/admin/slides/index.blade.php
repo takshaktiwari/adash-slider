@@ -31,7 +31,7 @@
                             </td>
                             <td>
                                 <b>Size: </b>{{ ucfirst($slide->display_size) }}
-                                <div class="text-secondary mt-1">
+                                <div class="text-info mt-1">
                                     <b class="mr-2">Status:</b>
                                     {{ $slide->status ? 'Active' : 'In-Active' }}
 
@@ -40,14 +40,14 @@
                                 </div>
                             </td>
                             <td class="font-size-20">
-                                <a href="{{ route('admin.slides.edit', [$slide, 'slider_id' => $slide->slider_id]) }}" class="btn btn-sm btn-success" title="Edit this">
+                                <a href="{{ route('admin.slides.edit', [$slide, 'slider_id' => $slide->slider_id]) }}" class="btn btn-sm btn-success btn-loader" title="Edit this">
                                     <i class="fas fa-edit"></i>
                                 </a>
 
                                 <form action="{{ route('admin.slides.destroy', [$slide, 'slider_id' => $slide->slider_id]) }}" method="POST" class="d-inline-block">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-sm btn-danger" title="Delete this" onclick="return confirm('Are you sure to delete ?')">
+                                    <button class="btn btn-sm btn-danger btn-loader" title="Delete this" onclick="return confirm('Are you sure to delete ?')">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </form>

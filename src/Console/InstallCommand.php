@@ -19,8 +19,8 @@ class InstallCommand extends Command
     {
         parent::__construct();
         $this->stubsPath = __DIR__ . '/../../stubs';
-        $this->filesystem = new Filesystem;
-        $this->str = new Str;
+        $this->filesystem = new Filesystem();
+        $this->str = new Str();
     }
 
     public function handle()
@@ -96,7 +96,7 @@ class InstallCommand extends Command
         $stub = $this->filesystem->get($this->stubsPath . '/resources/views/sidebar.stub');
         $targetFilePath = resource_path('views/components/admin/sidebar.blade.php');
         $targetFile = $this->filesystem->get($targetFilePath);
-        if (!$this->str->of($targetFile)->contains("admin.slides.index")) {
+        if (!$this->str->of($targetFile)->contains("admin.sliders.index")) {
             $lines = Str::of($targetFile)->beforeLast('</ul>');
             $lines .= $stub;
             $lines .= "\t\t\t</ul>";

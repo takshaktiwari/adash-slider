@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Slider>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Takshak\Aslider\Models\Slider>
  */
 class SliderFactory extends Factory
 {

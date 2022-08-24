@@ -2,7 +2,7 @@
 
 namespace Takshak\Aslider\Models;
 
-use App\Models\Slide;
+use Takshak\Aslider\Models\Slide;
 use Database\Factories\SliderFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

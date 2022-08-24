@@ -2,7 +2,7 @@
 
 namespace Takshak\Aslider\Actions;
 
-use App\Models\Slider;
+use Takshak\Aslider\Models\Slider;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Takshak\Imager\Facades\Imager;

@@ -40,18 +40,18 @@
                         </td>
                         <td>{{ $slider->slides_count }} Slides</td>
                         <td class="font-size-20">
-                            <a href="{{ route('admin.slides.index', ['slider_id' => $slider->id]) }}" class="btn btn-sm btn-info btn-loader" title="Slides">
+                            <a href="{{ route('admin.slides.index', ['slider_id' => $slider->id]) }}" class="btn btn-sm btn-info btn-loader load-circle" title="Slides">
                                 <i class="fas fa-images"></i>
                             </a>
 
-                            <a href="{{ route('admin.sliders.edit', [$slider]) }}" class="btn btn-sm btn-success btn-loader" title="Edit this">
+                            <a href="{{ route('admin.sliders.edit', [$slider]) }}" class="btn btn-sm btn-success btn-loader load-circle" title="Edit this">
                                 <i class="fas fa-edit"></i>
                             </a>
 
                             <form action="{{ route('admin.sliders.destroy', [$slider]) }}" method="POST" class="d-inline-block">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-sm btn-danger btn-loader" title="Delete this" onclick="return confirm('Are you sure to delete ?')">
+                                <button class="btn btn-sm btn-danger btn-loader load-circle" title="Delete this" onclick="return confirm('Are you sure to delete ?')">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </form>

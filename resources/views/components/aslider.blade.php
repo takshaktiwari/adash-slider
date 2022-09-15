@@ -1,4 +1,4 @@
-<div {{ $attributes->merge(['class' => 'aslider owl-carousel owl-theme', 'id' => '']) }}>
+<div {{ $attributes->merge(['class' => 'aslider owl-carousel owl-theme', 'id' => $sliderId]) }}>
     @if($customSlides && isset($slideItems))
         {!! $slideItems !!}
     @else
@@ -102,11 +102,14 @@
         </style>
     @endpush
     @push('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-        $(document).ready(function () {
-            $(".aslider").owlCarousel(JSON.parse('{!! $options !!}'));
-        });
-    </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @endpush
 @endonce
+
+@push('scripts')
+    <script>
+        $(document).ready(function () {
+            $("{{ '#'.$sliderId }}").owlCarousel(JSON.parse('{!! $options !!}'));
+        });
+    </script>
+@endpush

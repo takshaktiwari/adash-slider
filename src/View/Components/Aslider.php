@@ -17,6 +17,7 @@ class Aslider extends Component
     public $slider_size = [];
     public $thisSlider;
     public $customSlides = false;
+    public $sliderId;
     public function __construct(
         $slider = 'Default',
         $size = null,
@@ -33,6 +34,7 @@ class Aslider extends Component
         $responsive = [],
         $customSlides = false
     ) {
+        $this->sliderId = 'aslider_' . rand();
         $this->customSlides = (bool)$customSlides;
 
         $this->agent = new Agent();
@@ -83,11 +85,12 @@ class Aslider extends Component
     {
         $this->thisSlider = Slider::query()
             ->where(function ($query) {
-                $query->where('name', $this->slider)->orWhere('name', $this->slider);
+                $query->where('name', $this->slider)
+                    ->orWhere('slug', $this->slider);
             })
             ->where('status', true)
             ->first();
-        abort_if(!$this->thisSlider, 404, 'Slider not found');
+        abort_if(!$this->thisSlider, 404, $this->slider.': Slider not found');
 
         $query = Slide::where('slider_id', $this->thisSlider->id)->active();
         if ($size) {

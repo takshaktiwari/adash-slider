@@ -62,19 +62,59 @@ Slider uses [OwlCarousel2](https://owlcarousel2.github.io/OwlCarousel2/) for sli
 
 For more options and customization go to  [OwlCarousel2 documentation](https://owlcarousel2.github.io/OwlCarousel2/docs/started-welcome.html)
 
-##  Getting your custom slides
+##  Getting your custom slides: [Demo](https://project.takshaktiwari.com/packages/adash-slider#demo-custom-slider)
 You can make your own slides for the slider. You just need to add an attribute `custom-slides="1"` with `slideItems` slot. Eg:
 
     <x-aslider-aslider custom-slides="1">
         <x-slot:slideItems>
-            <h1 class="text-center py-5 bg-secondary mb-0 text-white">
-                Lorem ipsum dolor sit amet.
-            </h1>
-            <h1 class="text-center py-5 bg-secondary mb-0 text-white">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            </h1>
-            <h1 class="text-center py-5 bg-secondary mb-0 text-white">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, optio!
-            </h1>
+            <div class="card border-0 overflow-hidden">
+                <div class="card-body text-center pb-5 px-4 pt-4">
+                    <p class="mb-2 fs-5">Lorem vel similique perspiciatis aperiam? ipsum dolor sit amet consectetur, adipisicing elit. Mollitia. Lorem ipsum dolor sit. Lorem, ipsum.   </p>
+                    <h4 class="fw-bold">Lorem, Slide 1.</h4>
+                </div>
+            </div>
+
+            <div class="card border-0 overflow-hidden">
+                <div class="card-body text-center pb-5 px-4 pt-4">
+                    <p class="mb-2 fs-5">Mollitia, vel similique perspiciatis aperiam? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Lorem ipsum dolor sit. Lorem, ipsum.   </p>
+                    <h4 class="fw-bold">Lorem, Slide 2.</h4>
+                </div>
+            </div>
         </x-slot>
     </x-aslider-aslider>
+
+## Slider Demos/Examples
+- **Default Slider:**[Demo](https://project.takshaktiwari.com/packages/adash-slider#demo-default-slider)
+
+        <x-aslider-aslider />
+    
+- **Slider with specific size's images:**[Demo](https://project.takshaktiwari.com/packages/adash-slider#demo-sized-slider)
+
+        <x-aslider-aslider size="large" />
+
+- **Slider without dots:**[Demo](https://project.takshaktiwari.com/packages/adash-slider#demo-nav-slider)
+
+        <x-aslider-aslider :dots="false" :nav="true" />
+
+- **Slider without autoplay:**[Demo](https://project.takshaktiwari.com/packages/adash-slider#demo-autoplay-disable-slider)
+
+        <x-aslider-aslider :autoplay="false" />
+
+- **Slider with only 2 slides:**[Demo](https://project.takshaktiwari.com/packages/adash-slider#demo-slide-limit-slider)
+    
+        <x-aslider-aslider limit="2" />
+
+- **Show different slider:**[Demo](https://project.takshaktiwari.com/packages/adash-slider#demo-other-slider)
+    
+        <x-aslider-aslider slider="Example Slider" />
+
+- **Slider with advance options:**[Demo](https://project.takshaktiwari.com/packages/adash-slider#demo-advance-options-slider)
+
+        <x-aslider-aslider slider="Example Slider" limit="3" :options="[
+            'margin'    =>  15,
+            'loop'      =>  false,
+            'autoplayTimeout'   =>  2000,
+            'autoplayHoverPause'    =>  true
+        ]" />
+        
+

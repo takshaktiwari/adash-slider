@@ -110,8 +110,9 @@ You can make your own slides for the slider. You just need to add an attribute `
 
 - **Slider with advance options:**[Demo](https://project.takshaktiwari.com/packages/adash-slider#demo-advance-options-slider)
 
-        <x-aslider-aslider slider="Example Slider" limit="3" :options="[
-            'margin'    =>  15,
+        <x-aslider-aslider slider="Example Slider" size="medium" :options="[
+            'items'     =>  2,
+            'margin'    =>  0,
             'loop'      =>  false,
             'autoplayTimeout'   =>  2000,
             'autoplayHoverPause'    =>  true

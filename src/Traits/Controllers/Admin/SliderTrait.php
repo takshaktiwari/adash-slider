@@ -5,7 +5,9 @@ namespace Takshak\Aslider\Traits\Controllers\Admin;
 use Takshak\Aslider\Models\Slider;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
+use Takshak\Aslider\Models\Slide;
 
 trait SliderTrait
 {
@@ -76,5 +78,22 @@ trait SliderTrait
         ]);
         $slider->update($validated);
         return redirect()->route('admin.sliders.index')->withSuccess('SUCCESS !! Slider has been updated.');
+    }
+
+    public function destroy(Slider $slider)
+    {
+        $slider->load('slides');
+
+        $images = $slider->slides->pluck('image_sm')
+            ->merge($slider->slides->pluck('image_md'))
+            ->merge($slider->slides->pluck('image_lg'))
+            ->toArray();
+
+        Storage::delete($images);
+
+        Slide::where('slider_id', $slider->id)->delete();
+        $slider->delete();
+
+        return back()->withSuccess('Slider has been successfully deleted.');
     }
 }

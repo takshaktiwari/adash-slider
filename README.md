@@ -17,19 +17,19 @@ Multiple sliders for different location can be added through admin panel.
 ##  Component Options
 | Parameters | Default | Description |
 |--|--|--|
-| slider | Default | Name or slug of the slider |
-| size |  | Display size of slides, by default it will show all sizes in responsive behavior |
-| limit |  | Number of slides to be shown, will show by default |
+| slider | Default | Name or slug of the slider which will be displayed |
+| size |  | Display size of slides (small / medium / large), by default it will show all sizes in responsive behavior |
+| limit |  | Number of slides to be shown, all slides will be shown by default |
 | random | false | Get slides in random order |
-| options |  | Slider options passed as array |
-| overrides |  | Override the default options |
+| options |  | Slider options passed as array (see options from OwlCarousel2) |
+| overrides |  | Override the default options (see options from OwlCarousel2) |
 | autoplay | true | Autoplay the slider |
 | loop | true | Play slides in the loop |
 | margin | 10 | Margin between slides |
 | nav | false | Show navigation buttons |
 | dots | true | Sow navigation dots |
 | items | 1 | Items shown at one slide |
-| custom-slides | false | Get your custom slides |
+| custom-slides | false | Get your custom slides (own html content) |
 
 ---
 
@@ -118,4 +118,6 @@ You can make your own slides for the slider. You just need to add an attribute `
             'autoplayHoverPause'    =>  true
         ]" />
         
-
+- **Slider with background image, title and subtitle:**[Demo](https://project.takshaktiwari.com/packages/adash-slider#demo-background-slider)
+    
+        <x-aslider-aslider slider="Background Slider" />

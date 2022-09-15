@@ -9,7 +9,7 @@
                         <h1 class="title">{{ $slide->title }}</h1>
                         <p class="subtitle">{{ $slide->subtitle }}</p>
                         @if($slide->url_link)
-                            <a href="{{ $slide->url_link }}" class="btn">Learn More</a>
+                            <a href="{{ $slide->url_link }}" target="_blank" class="btn">Learn More</a>
                         @endif
                     </div>
                 </div>
@@ -29,16 +29,12 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <style>
-            .aslider{
-                background-color: {{ $thisSlider->bg_color ?? '#eaeaea' }};
-            }
             .aslider .in_background{
                 max-width: 100%;
                 background-position: center;
                 background-size: cover;
                 display: flex;
                 padding: 20px;
-                min-height: {{ isset($slider_size['height']) ? $slider_size['height'].'px' : 'auto' }};
             }
             .aslider .in_background .content{
                 margin: auto;
@@ -105,6 +101,17 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @endpush
 @endonce
+
+@push('styles')
+    <style>
+        {{ '#'.$sliderId }}{
+            background-color: {{ $thisSlider->bg_color ?? '#eaeaea' }};
+        }
+        {{ '#'.$sliderId }} .in_background{
+            min-height: {{ isset($slider_size['height']) ? $slider_size['height'].'px' : 'auto' }};
+        }
+    </style>
+@endpush
 
 @push('scripts')
     <script>
